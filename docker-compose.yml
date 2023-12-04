@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  db:
+    image: mysql
+    container_name: local_mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: medical
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpassword
+    volumes:
+      - local_mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: mysqluser
+      PMA_PASSWORD: mysqlpassword
+    volumes:
+      - phpmyadmin-data:/var/lib/phpmyadmin
+
+volumes:
+  local_mysql:
+  phpmyadmin-data:
