@@ -26,7 +26,8 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private String genero;
+    @Enumerated(EnumType.STRING)
+    private Genero genero;
     private String DataNascimento;
     private String email;
     private String telefone;
