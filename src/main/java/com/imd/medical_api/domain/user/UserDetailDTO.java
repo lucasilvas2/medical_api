@@ -10,6 +10,6 @@ public record UserDetailDTO(
         Boolean ativo
 ) {
     public UserDetailDTO(User user) {
-        this(user.getId(), user.getName(), user.getTelefone(), user.getEmail(), user.getAtivo());
+        this(user.getId(), user.getNome(), user.getTelefone(), user.getEmail(), user.getAtivo());
     }
 }
