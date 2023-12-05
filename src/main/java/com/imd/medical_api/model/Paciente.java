@@ -24,7 +24,7 @@ public class Paciente {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private String genero;
     private String DataNascimento;

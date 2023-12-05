@@ -25,8 +25,10 @@ public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+    @ManyToOne
     private Paciente paciente;
+    @ManyToOne
     private Doutor doutor;
     private String dataConsulta;
     private String diagnostico;
