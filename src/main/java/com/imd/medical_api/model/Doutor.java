@@ -23,10 +23,10 @@ public class Doutor {
 
     }
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private String especialidade;
-    private int idade;
+    private Integer idade;
     private String email;
     private boolean ativo;
 }
