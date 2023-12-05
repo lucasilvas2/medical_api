@@ -1,14 +1,15 @@
-package com.imd.medical_api.domain.user;
+package com.imd.medical_api.domain.doutor;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
-public record UserUpdateDTO(
+public record DoutorUpdateDTO(
         @NotNull
         Long id,
         @NotNull
         String nome,
-        String telefone,
+        String especialidade,
+        Integer idade,
         @Email
         String email,
         Boolean ativo

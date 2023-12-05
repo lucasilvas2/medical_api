@@ -18,26 +18,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String name;
-    private String phone;
+    private String nome;
+    private String telefone;
     @Email
     private String email;
     @Column(columnDefinition = "boolean default true")
     private Boolean ativo;
 
     public User(UserCreateDTO userCreateDTO) {
-        this.name = userCreateDTO.name();
-        this.phone = userCreateDTO.phone();
+        this.nome = userCreateDTO.nome();
+        this.telefone = userCreateDTO.telefone();
         this.email = userCreateDTO.email();
         this.ativo = userCreateDTO.ativo();
     }
 
     public void update(UserUpdateDTO userUpdateDTO){
-        if(userUpdateDTO.name() != null){
-            this.name = userUpdateDTO.name();
+        if(userUpdateDTO.nome() != null){
+            this.nome = userUpdateDTO.nome();
         }
-        if(userUpdateDTO.phone() != null){
-            this.phone = userUpdateDTO.phone();
+        if(userUpdateDTO.telefone() != null){
+            this.telefone = userUpdateDTO.telefone();
         }
         if( userUpdateDTO.email() != null){
             this.email = userUpdateDTO.email();

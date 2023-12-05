@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotNull;
 
 public record UserCreateDTO(
         @NotNull
-        String name,
-        String phone,
+        String nome,
+        String telefone,
         @Email
         String email,
         Boolean ativo
