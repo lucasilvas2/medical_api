@@ -2,6 +2,7 @@ package com.imd.medical_api.model;
 
 import com.imd.medical_api.domain.paciente.PacienteCreateDTO;
 import com.imd.medical_api.domain.paciente.PacienteUpdateDTO;
+import com.imd.medical_api.enun.Genero;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

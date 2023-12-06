@@ -3,6 +3,7 @@ package com.imd.medical_api.model;
 
 import com.imd.medical_api.domain.consulta.ConsultaCreateDTO;
 import com.imd.medical_api.domain.consulta.ConsultaUpdateDTO;
+import com.imd.medical_api.enun.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

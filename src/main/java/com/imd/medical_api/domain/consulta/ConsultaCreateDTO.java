@@ -2,7 +2,7 @@ package com.imd.medical_api.domain.consulta;
 
 import com.imd.medical_api.model.Doutor;
 import com.imd.medical_api.model.Paciente;
-import com.imd.medical_api.model.Status;
+import com.imd.medical_api.enun.Status;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
