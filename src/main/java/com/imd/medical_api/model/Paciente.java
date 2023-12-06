@@ -1,5 +1,7 @@
 package com.imd.medical_api.model;
 
+import com.imd.medical_api.domain.paciente.PacienteCreateDTO;
+import com.imd.medical_api.domain.paciente.PacienteUpdateDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,14 +16,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Paciente {
 
-    public  Paciente(Paciente dados){
-        this.nome = dados.nome;
-        this.genero = dados.genero;
-        this.DataNascimento = dados.DataNascimento;
-        this.email = dados.email;
-        this.telefone = dados.telefone;
-        this.ativo = true;
+    public  Paciente(PacienteCreateDTO pacienteCreateDTO){
+        this.nome = pacienteCreateDTO.nome();
+        this.genero = pacienteCreateDTO.genero();
+        this.DataNascimento = pacienteCreateDTO.DataNascimento();
+        this.email = pacienteCreateDTO.email();
+        this.telefone = pacienteCreateDTO.telefone();
+        this.ativo = pacienteCreateDTO.ativo();
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,6 +35,27 @@ public class Paciente {
     private Genero genero;
     private String telefone;
 
-    private boolean ativo;
+    private Boolean ativo;
+
+    public void update(PacienteUpdateDTO pacienteUpdateDTO){
+        if(pacienteUpdateDTO.nome() != null){
+            this.nome = pacienteUpdateDTO.nome();
+        }
+        if(pacienteUpdateDTO.DataNascimento() != null){
+            this.DataNascimento = pacienteUpdateDTO.DataNascimento();
+        }
+        if( pacienteUpdateDTO.genero() != null){
+            this.genero = pacienteUpdateDTO.genero();
+        }
+        if( pacienteUpdateDTO.telefone() != null){
+            this.telefone = pacienteUpdateDTO.telefone();
+        }
+        if( pacienteUpdateDTO.email() != null){
+            this.email = pacienteUpdateDTO.email();
+        }
+        if (pacienteUpdateDTO.ativo() != null) {
+            this.ativo = pacienteUpdateDTO.ativo();
+        }
+    }
 
 }
