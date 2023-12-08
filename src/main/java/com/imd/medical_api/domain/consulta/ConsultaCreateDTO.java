@@ -12,7 +12,7 @@ public record ConsultaCreateDTO(
         @Enumerated(EnumType.STRING)
         Status status,
         Boolean ativo,
-        Doutor doutor,
-        Paciente paciente
+        Long doutor_id,
+        Long paciente_id
 ) {
 }

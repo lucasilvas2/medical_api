@@ -47,4 +47,8 @@ public class DoutorService {
         doutor.update(dados);
         return ResponseEntity.ok().build();
     }
+
+    public Doutor findById(Long id){
+        return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
+    }
 }

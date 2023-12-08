@@ -18,9 +18,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Consulta {
 
-    public Consulta(ConsultaCreateDTO consutalCreateDTO){
-        this.paciente = consutalCreateDTO.paciente();
-        this.doutor = consutalCreateDTO.doutor();
+    public Consulta(ConsultaCreateDTO consutalCreateDTO, Doutor doutor, Paciente paciente){
+        this.paciente = paciente;
+        this.doutor = doutor;
         this.dataConsulta = consutalCreateDTO.dataConsulta();
         this.diagnostico = consutalCreateDTO.diagnostico();
         this.status = consutalCreateDTO.status();
@@ -40,7 +40,7 @@ public class Consulta {
     private Status status;
     private Boolean ativo;
 
-    public void update(ConsultaUpdateDTO consultaUpdateDTO){
+    public void update(ConsultaUpdateDTO consultaUpdateDTO, Doutor doutor, Paciente paciente){
         if(consultaUpdateDTO.dataConsulta() != null){
             this.dataConsulta = consultaUpdateDTO.dataConsulta();
         }
@@ -53,11 +53,11 @@ public class Consulta {
         if( consultaUpdateDTO.status() != null){
             this.status = consultaUpdateDTO.status();
         }
-        if( consultaUpdateDTO.doutor() != null){
-            this.doutor = consultaUpdateDTO.doutor();
+        if( doutor != null){
+            this.doutor = doutor;
         }
-        if ( consultaUpdateDTO.paciente() != null) {
-            this.paciente = consultaUpdateDTO.paciente() ;
+        if ( paciente!= null) {
+            this.paciente = paciente ;
         }
     }
 }

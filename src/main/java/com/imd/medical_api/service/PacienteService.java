@@ -47,4 +47,8 @@ public class PacienteService {
         paciente.update(dados);
         return ResponseEntity.ok().build();
     }
+
+    public Paciente findById(Long id){
+        return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
+    }
 }
