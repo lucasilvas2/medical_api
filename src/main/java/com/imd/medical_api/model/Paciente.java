@@ -19,49 +19,28 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Paciente {
 
-    public  Paciente(PacienteCreateDTO pacienteCreateDTO){
-        this.nome = pacienteCreateDTO.nome();
-        this.genero = pacienteCreateDTO.genero();
+    public  Paciente(PacienteCreateDTO pacienteCreateDTO, User user){
         this.DataNascimento = pacienteCreateDTO.DataNascimento();
-        this.email = pacienteCreateDTO.email();
-        this.telefone = pacienteCreateDTO.telefone();
-        this.ativo = pacienteCreateDTO.ativo();
+        this.user = user;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private String nome;
     private String DataNascimento;
-    @Email
-    @NotNull
-    private String email;
-    @Enumerated(EnumType.STRING)
-    private Genero genero;
-    private String telefone;
+    @OneToOne
+    private User user;
 
-    private Boolean ativo;
+    public void update(PacienteUpdateDTO pacienteUpdateDTO, User user){
 
-    public void update(PacienteUpdateDTO pacienteUpdateDTO){
-        if(pacienteUpdateDTO.nome() != null){
-            this.nome = pacienteUpdateDTO.nome();
-        }
         if(pacienteUpdateDTO.DataNascimento() != null){
             this.DataNascimento = pacienteUpdateDTO.DataNascimento();
         }
-        if( pacienteUpdateDTO.genero() != null){
-            this.genero = pacienteUpdateDTO.genero();
+
+        if(user != null){
+            this.user = user;
         }
-        if( pacienteUpdateDTO.telefone() != null){
-            this.telefone = pacienteUpdateDTO.telefone();
-        }
-        if( pacienteUpdateDTO.email() != null){
-            this.email = pacienteUpdateDTO.email();
-        }
-        if (pacienteUpdateDTO.ativo() != null) {
-            this.ativo = pacienteUpdateDTO.ativo();
-        }
+
     }
 
 }

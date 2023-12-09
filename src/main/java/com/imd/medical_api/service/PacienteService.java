@@ -19,9 +19,11 @@ import java.util.List;
 public class PacienteService {
     @Autowired
     PacienteRepository repository;
-
+    @Autowired
+    UserService userService;
     public ResponseEntity cadastrarPaciente(PacienteCreateDTO dados){
-        repository.save(new Paciente(dados));
+        var user = userService.create(dados.userCreateDTO());
+        repository.save(new Paciente(dados, user));
         return ResponseEntity.noContent().build();
     }
 
@@ -39,12 +41,13 @@ public class PacienteService {
     }
 
     @Transactional
-    public ResponseEntity atualizarPaciente(PacienteUpdateDTO dados){
-        if(dados.id() == null){
+    public ResponseEntity atualizarPaciente(PacienteUpdateDTO pacienteUpdateDTO){
+        if(pacienteUpdateDTO.id() == null){
             return ResponseEntity.badRequest().build();
         }
-        Paciente paciente = repository.getReferenceById(dados.id());
-        paciente.update(dados);
+        Paciente paciente = repository.getReferenceById(pacienteUpdateDTO.id());
+        var user = userService.update(pacienteUpdateDTO.userUpdateDTO());
+        paciente.update(pacienteUpdateDTO, user);
         return ResponseEntity.ok().build();
     }
 
