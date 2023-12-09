@@ -4,6 +4,7 @@ import com.imd.medical_api.domain.doutor.DoutorCreateDTO;
 import com.imd.medical_api.domain.doutor.DoutorDetailDTO;
 import com.imd.medical_api.domain.doutor.DoutorUpdateDTO;
 import com.imd.medical_api.model.Doutor;
+import com.imd.medical_api.model.Paciente;
 import com.imd.medical_api.repository.DoutorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class DoutorService {
 
     public List<Doutor> listarDoutores(){
         return repository.findAll();
+    }
+
+    public Doutor buscaDoutorId(Long id){
+        return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
     }
 
     @Transactional

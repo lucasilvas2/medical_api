@@ -5,6 +5,7 @@ import com.imd.medical_api.domain.doutor.DoutorCreateDTO;
 import com.imd.medical_api.domain.doutor.DoutorUpdateDTO;
 import com.imd.medical_api.domain.paciente.PacienteCreateDTO;
 import com.imd.medical_api.domain.paciente.PacienteUpdateDTO;
+import com.imd.medical_api.model.Consulta;
 import com.imd.medical_api.model.Doutor;
 import com.imd.medical_api.model.Paciente;
 import com.imd.medical_api.service.DoutorService;
@@ -30,6 +31,11 @@ public class PacienteController {
     @GetMapping
     public List<Paciente> listar(){
         return paciente.listarPaciente();
+    }
+
+    @GetMapping(value="/{id}")
+    public Paciente findById(@PathVariable Long id){
+        return paciente.buscaPacienteId(id);
     }
 
     @DeleteMapping("/{id}")

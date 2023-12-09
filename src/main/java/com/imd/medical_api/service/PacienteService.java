@@ -5,6 +5,7 @@ import com.imd.medical_api.domain.doutor.DoutorCreateDTO;
 import com.imd.medical_api.domain.doutor.DoutorUpdateDTO;
 import com.imd.medical_api.domain.paciente.PacienteCreateDTO;
 import com.imd.medical_api.domain.paciente.PacienteUpdateDTO;
+import com.imd.medical_api.model.Consulta;
 import com.imd.medical_api.model.Doutor;
 import com.imd.medical_api.model.Paciente;
 import com.imd.medical_api.repository.PacienteRepository;
@@ -30,6 +31,10 @@ public class PacienteService {
     public List<Paciente> listarPaciente(){
         return repository.findAll();
     }
+
+   public Paciente buscaPacienteId(Long id){
+        return repository.findById(id).isPresent() ? repository.findById(id).get() : null;
+   }
 
     @Transactional
     public ResponseEntity deletePaciente(Long id){

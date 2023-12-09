@@ -3,6 +3,7 @@ package com.imd.medical_api.Controller;
 import com.imd.medical_api.domain.doutor.DoutorCreateDTO;
 import com.imd.medical_api.domain.doutor.DoutorUpdateDTO;
 import com.imd.medical_api.model.Doutor;
+import com.imd.medical_api.model.Paciente;
 import com.imd.medical_api.service.DoutorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class DoutorController {
     @GetMapping
     public List<Doutor> listar(){
         return doutor.listarDoutores();
+    }
+
+    @GetMapping(value="/{id}")
+    public Doutor findById(@PathVariable Long id){
+        return doutor.buscaDoutorId(id);
     }
 
     @DeleteMapping("/{id}")
