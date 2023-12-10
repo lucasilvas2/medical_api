@@ -5,13 +5,10 @@ import com.imd.medical_api.model.User;
 
 public record DoutorDetailDTO(
         Long id,
-        String nome,
         String especialidade,
-        Integer idade,
-        String email,
-        Boolean ativo
+        User user
 ) {
     public DoutorDetailDTO(Doutor doutor) {
-        this(doutor.getId(), doutor.getNome(), doutor.getEspecialidade(), doutor.getIdade(), doutor.getEmail(),  doutor.getAtivo());
+        this(doutor.getId(), doutor.getEspecialidade(), doutor.getUser());
     }
 }

@@ -3,7 +3,6 @@ package com.imd.medical_api.model;
 import com.imd.medical_api.domain.doutor.DoutorCreateDTO;
 import com.imd.medical_api.domain.doutor.DoutorUpdateDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,40 +17,25 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Doutor {
 
-    public Doutor(DoutorCreateDTO doutorCreateDTO){
-        this.nome = doutorCreateDTO.nome();
+    public Doutor(DoutorCreateDTO doutorCreateDTO, User user){
         this.especialidade = doutorCreateDTO.especialidade();
-        this.idade = doutorCreateDTO.idade();
-        this.email = doutorCreateDTO.email();
-        this.ativo = doutorCreateDTO.ativo();
+        this.user = user;
     }
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String nome;
-    @NotNull
     private String especialidade;
-    private Integer idade;
-    @Email
-    private String email;
-    @Column(columnDefinition = "boolean default true")
-    private Boolean ativo;
+    @NotNull
+    @OneToOne
+    private User user;
 
-    public void update(DoutorUpdateDTO doutorUpdateDTO){
-        if(doutorUpdateDTO.nome() != null){
-            this.nome = doutorUpdateDTO.nome();
-        }
+    public void update(DoutorUpdateDTO doutorUpdateDTO, User user){
+
         if(doutorUpdateDTO.especialidade() != null){
             this.especialidade = doutorUpdateDTO.especialidade();
         }
-        if( doutorUpdateDTO.idade() != null){
-            this.idade = doutorUpdateDTO.idade();
-        }
-        if( doutorUpdateDTO.email() != null){
-            this.email = doutorUpdateDTO.email();
-        }
-        if (doutorUpdateDTO.ativo() != null) {
-            this.ativo = doutorUpdateDTO.ativo();
+        if(user != null){
+            this.user = user;
         }
     }
 }

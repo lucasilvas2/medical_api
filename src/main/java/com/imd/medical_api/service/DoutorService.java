@@ -18,10 +18,13 @@ import java.util.List;
 public class DoutorService {
     @Autowired
     DoutorRepository repository;
+    @Autowired
+    UserService userService;
 
     //Cadastrar um novo doutor na tabela
     public ResponseEntity cadastrarDoutor(DoutorCreateDTO dados){
-        repository.save(new Doutor(dados));
+        var user = userService.create(dados.userCreateDTO());
+        repository.save(new Doutor(dados, user));
         return ResponseEntity.noContent().build();
     }
 
@@ -49,7 +52,8 @@ public class DoutorService {
             return ResponseEntity.badRequest().build();
         }
         Doutor doutor = repository.getReferenceById(dados.id());
-        doutor.update(dados);
+        var user = userService.update(dados.userUpdateDTO());
+        doutor.update(dados, user);
         return ResponseEntity.ok().build();
     }
 
